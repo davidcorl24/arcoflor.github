@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Formulario de empeado</title>
+<title>Formulario de contrato empleado</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -297,11 +297,11 @@ $(document).ready(function(){
 console.log($(window).width() + 'x' + $(window).height());
   data =
    [
-{"id":1,"nombre":"Emilia","apellido":"Perez","fechan":"1999-05-23","correo":"emilia@gmail.com","telefono":"0944527896","direccio":"Latacunga"},
-{"id":1,"nombre":"Dulce","apellido":"Estrada","fechan":"1999-06-24","correo":"dulce@gmail.com","telefono":"0989456784","direccio":"Latacunga"},
-{"id":1,"nombre":"Erika","apellido":"Ortiz","fechan":"1998-08-26","correo":"erika@gmail.com","telefono":"0965121545","direccio":"Latacunga"},
-{"id":1,"nombre":"Elvia","apellido":"Hinojosa","fechan":"1997-01-23","correo":"elvia@gmail.com","telefono":"0975385274","direccio":"Latacunga"},
-{"id":1,"nombre":"Antonela","apellido":"Guanotasig","fechan":"1996-07-29","correo":"antonela@gmail.com","telefono":"0995124678","direccio":"Latacunga"},
+{"id":1,"codigo":"CEMPLE1","descri":"Temporal","sueldo":"$300","fecha":"2023-06-28","fechaf":"2024-06-28"},
+{"id":1,"codigo":"CEMPLE2","descri":"Temporal","sueldo":"$200","fecha":"2023-06-28","fechaf":"2024-06-28"},
+{"id":1,"codigo":"CEMPLE3","descri":"Temporal","sueldo":"$400","fecha":"2023-06-28","fechaf":"2024-06-28"},
+{"id":1,"codigo":"CEMPLE4","descri":"Temporal","sueldo":"$600","fecha":"2023-06-28","fechaf":"2024-06-28"},
+{"id":1,"codigo":"CEMPLE5","descri":"Temporal","sueldo":"$600","fecha":"2023-06-28","fechaf":"2024-06-28"},
 
    ];
    getByText();
@@ -399,7 +399,7 @@ function getByText(){
     {
         var search = [];
         for (var i=0; i<data.length; i++){
-             if(data[i].nombre.toLowerCase().includes(txt.toLowerCase()) || txt.toLowerCase().includes(data[i].nombre.toLowerCase()) || data[i].apellido.toLowerCase().includes(txt.toLowerCase()) || txt.toLowerCase().includes(data[i].apellido.toLowerCase())){
+             if(data[i].codigo.toLowerCase().includes(txt.toLowerCase()) || txt.toLowerCase().includes(data[i].codigo.toLowerCase()) || data[i].descri.toLowerCase().includes(txt.toLowerCase()) || txt.toLowerCase().includes(data[i].descri.toLowerCase())){
                search.unshift(data[i])
              }     
           }
@@ -418,12 +418,11 @@ function BindEnter(event){
 }
 function fncUpdate(index){
     event.preventDefault();
-    data[index].nombre = $('#txtEditNombre').val();
-    data[index].apellido = $('#txtEditApellido').val();
-    data[index].fechan = $('#txtEditFechan').val();
-    data[index].correo = $('#txtEditCorreo').val();
-    data[index].telefono= $('#txtEditTelefono').val();
-    data[index].direccio = $('#txtEditDireccio').val();
+    data[index].codigo = $('#txtEditCodigo').val();
+    data[index].descri = $('#txtEditDescri').val();
+    data[index].sueldo= $('#txtEditSueldo').val();
+    data[index].fecha= $('#txtEditFecha').val();
+    data[index].fechaf = $('#txtEditFechaf').val();
     $('#editEmployeeModal').modal('toggle');
     $('#editEmployeeModal input:text').val('');
     showMessage('se a modificado con exito.');
@@ -434,12 +433,11 @@ function fncEdit(id){
     var index = getIndexOf(id);
     if(index > -1)
     {
-        $('#txtEditNombre').val(data[index].nombre);
-        $('#txtEditApellido').val(data[index].apellido);
-        $('#txtEditFechan').val(data[index].fechan);
-        $('#txtEditCorreo').val(data[index].correo);
-        $('#txtEditTelefono').val(data[index].telefono);
-        $('#txtEditDireccio').val(data[index].direccio);
+        $('#txtEditCodigo').val(data[index].nombre);
+        $('#txtEditDescri').val(data[index].descri);
+        $('#txtEditSuldo').val(data[index].sueldo);
+        $('#txtEditFecha').val(data[index].fecha);
+        $('#txtEditFechaf').val(data[index].fechaf);
         $('#editform').attr('onSubmit','fncUpdate(\''+index+'\')');
     }
 }
@@ -448,7 +446,7 @@ function fncAdd(){
     event.preventDefault();
     if ( $("#txtNombre").val().length > 0 )    {
         data.unshift(
-        {"id":(MaxId+1),"nombre":$('#txtNombre').val(),"apellido":$('#txtApellido').val(),"fechan":$('#txtFechan').val(),"correo":$('#txtCorreo').val(),"telefono":$('#txtTelefono').val(),"direccio":$('#txtDireccio').val()}
+        {"id":(MaxId+1),"codigo":$('#txtCodigo').val(),"descri":$('#txtDescri').val(),"sueldo":$('#txtSueldo').val(),"fecha":$('#txtFecha').val(),"fechaf":$('#txtFechaf').val()}
         );
         ActivePageNumber = 1;
         $('#addEmployeeModal').modal('toggle');
@@ -478,6 +476,7 @@ function fncDelete(val,modal){
 <html lang="es-Es">
 <head>
    <meta charset="UTF-8">
+    <title>Men?s</title>
       <link rel="stylesheet" href="CSS/esilos_menu.css">  
    </head>
 <body>  
@@ -509,8 +508,7 @@ function fncDelete(val,modal){
                <li><a href="consulta_horario.html">consulta de horario</a></li>
                <li><a href="consulta_ofrta_emple.html">consulta de oferta</a></li>
                <li><a href="consulta_orden de trabajo.html">consulta de orden de trabajo</a></li>
-                <li><a href="consulta_area.html">consulta de areas</a></li>	
-                
+                <li><a href="consulta_area.html">consulta de areas</a></li>		
                 </ul>
             </li>
             <li><a href="ventas.html">Ventas </a></li>
@@ -522,11 +520,13 @@ function fncDelete(val,modal){
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2>Formulario <b>de registro de Cliente</b></h2>
+                        <h2>Formulario <b>de registro de Contrato empleado</b></h2>
                     </div>
                     <div class="col-sm-3">
                      <div class="input-group">
-                        <span onclick="getByText()"
+                        <input type="text" id="txtSearch" class="form-control" onkeydown="Javascript: if (event.keyCode==13) getByText();" placeholder="Search"/>
+                        <span onclick="getByText()" id="spnSearch" class="input-group-addon">
+                            <i class="fa fa-search"></i>
                         </span>
                     </div>
                     </div>
@@ -539,12 +539,11 @@ function fncDelete(val,modal){
             <table id="tblEmployee" class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Fecha de nacimiento</th>
-                        <th>Correo</th>
-                        <th>Telefono</th>
-                        <th>Direccion</th>
+                        <th>Codigo y Apellido</th>
+                        <th>Descripcion</th>
+                        <th>Sueldo</th>
+                        <th>Fecha inicio</th>
+                        <th>Fecha fin</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -563,7 +562,7 @@ function fncDelete(val,modal){
             <div class="clearfix" id='divPaging'>
                 <div class="row">
                     <div class="col-lg-6 col-sm-12">
-                   <div class="hint-text">Mostrando <b id="bFrom">5</b> a <b id="bTo">5</b> de <b id="bTotal">25</b> Introducidos</div>
+                        <div class="hint-text">Mostrando <b id="bFrom">5</b> a <b id="bTo">5</b> de <b id="bTotal">25</b> Introducidos</div>
                     </div>
                 
                 <div class="col-lg-6 col-sm-12">
@@ -586,28 +585,24 @@ function fncDelete(val,modal){
                     </div>
                     <div class="modal-body">                    
                         <div class="form-group">
-                            <label>Nombre</label>
-                            <input type="text" id="txtNombre" class="form-control" required="">
+                            <label>Codigo</label>
+                            <input type="text" id="txtCodigo" class="form-control" required="">
                         </div>
                         <div class="form-group">
-                            <label>Apellido</label>
-                            <input type="text" id="txtApellido" class="form-control" required="">
+                            <label>Descripcion</label>
+                            <input type="text" id="txtDescri"  class="form-control" required="" >
+                        </div>
+                       <div class="form-group">
+                            <label>Sueldo</label>
+                            <input type="text" id="txtSueldo" class="form-control" required="">
                         </div>
                         <div class="form-group">
-                            <label>fecha de nacimiento</label>
-                            <input type="text" id="txtFechan"  class="form-control" required="" >
-                        </div>
-                        <div class="form-group">
-                            <label>Correo</label>
-                            <input type="text" id="txtCorreo" class="form-control" required="">
+                            <label>Fecha inicio</label>
+                            <input type="text" id="txtFecha" class="form-control" required="">
                         </div> 
                        <div class="form-group">
-                            <label>Telefono</label>
-                            <input type="text" id="txtTelefono" class="form-control" required="">
-                        </div>
-                       <div class="form-group">
-                            <label>Dirreccion</label>
-                            <input type="text" id="txtDireccio" class="form-control" required="">
+                            <label>Fecha fin</label>
+                            <input type="text" id="txtFechaf" class="form-control" required="">
                         </div>                                  
                     </div>
                     <div class="modal-footer">
@@ -624,34 +619,30 @@ function fncDelete(val,modal){
             <div class="modal-content">
                 <form id='editform'>
                     <div class="modal-header">                        
-                        <h4 class="modal-title">Editar un registro</h4>
+                        <h4 class="modal-title">Editar registro</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
                     </div>
                     <div class="modal-body">                    
                         <div class="form-group">
-                            <label>Nombre</label>
-                            <input type="text" id="txtEditNombre" class="form-control" required="">
+                            <label>Codigo</label>
+                            <input type="text" id="txtCodigo" class="form-control" required="">
                         </div>
                         <div class="form-group">
-                            <label>Apellido</label>
-                            <input type="text" id="txtEditApellido"  class="form-control" required="" >
+                            <label>Descripcion</label>
+                            <input type="text" id="txtDescri"  class="form-control" required="" >
+                        </div>
+                       <div class="form-group">
+                            <label>Sueldo</label>
+                            <input type="text" id="txtSueldo" class="form-control" required="">
                         </div>
                         <div class="form-group">
-                            <label>Fecha nacimiento</label>
-                            <input type="text" id="txtEditFechan"  class="form-control" required="" >
-                        </div>
-                      <div class="form-group">
-                            <label>Correo</label>
-                            <input type="text" id="txtEditCorreo"  class="form-control" required="" >
-                        </div>
-                     <div class="form-group">
-                            <label>Telefono</label>
-                            <input type="text" id="txtEditTelefono"  class="form-control" required="" >
+                            <label>Fecha inicio</label>
+                            <input type="text" id="txtFecha" class="form-control" required="">
                         </div> 
-                     <div class="form-group">
-                            <label>Direcccion</label>
-                            <input type="text" id="txtEditDireccio"  class="form-control" required="" >
-                        </div>                
+                       <div class="form-group">
+                            <label>Fecha fin</label>
+                            <input type="text" id="txtFechaf" class="form-control" required="">
+                        </div> 
                     </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
